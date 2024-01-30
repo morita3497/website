@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"
+
+    ></script>
+
+    <title>コード収集</title>
+
+
+    <style>
+        .myselect {
+            background-color: lightskyblue;
+        }
+
+    </style>
+    <script>
+            $(document).ready(function () {
+            show_html();
+        });
+
+            function show_html() {
+            fetch('/website').then((res) => res.json()).then((data) => {
+                let rows = data['result']
+                $('#cord-box').empty()
+                rows.forEach((a) => {
+                    let lang = a['lang']
+                    if (lang == "HTML"):
+                        let cord = a['cord']
+                        let overview = a['overview']
+                        let img = a['img']
+
+                        let temp_html = `<div class="card h-100">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${cord}</h5>
+                                                <p class="mycomment">${overview}</p>
+                                            </div>
+                                            <img src="${img}"
+                                                 class="card-img-top" alt="...">
+                                        </div>`
+                        $('#cord-box').append(temp_html)
+                })
+            })
+        }
+    </script>
+</head>
+
+<body>
+<h3 class="d-flex justify-content-center">コード収集</h3>
+
+<div class="d-flex justify-content-center">
+    <ul class="navbar-nav flex-row justify-content-center">
+        <li class="col-5 col-lg-auto">
+            <a class="myselect nav-link py-2 px-0 px-lg-2" href="HTMLsave.html"
+               onclick="">HTML</a>
+        </li>
+        <li class="col-5 col-lg-auto">
+            <a class="nav-link py-2 px-0 px-lg-2" href="CSSsave.html"
+               onclick="">CSS</a>
+        </li>
+        <li class="col-5 col-lg-auto">
+            <a class="nav-link py-2 px-0 px-lg-2" href="Javasave.html"
+               onclick="">Java</a>
+        </li>
+        <li class="col-5 col-lg-auto">
+            <a class="nav-link py-2 px-0 px-lg-2" href="Javascriptsave.html"
+               onclick="">Javascript</a>
+        </li>
+        <li class="col-5 col-lg-auto">
+            <a class="nav-link py-2 px-0 px-lg-2" href="Pythonsave.html"
+               onclick="">Python</a>
+        </li>
+        <li class="col-5 col-lg-auto">
+            <a class="nav-link py-2 px-0 px-lg-2" href="index.html"
+               onclick="">戻る</a>
+        </li>
+    </ul>
+</div>
+    <div class="d-flex justify-content-center" id="cord-box">
+        <div class="col d-flex justify-content-center">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">コード</h5>
+                    <p>言語</p>
+                    <p class="mycomment">概要</p>
+                </div>
+                <img src="" class="card-img-top" alt="...">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
